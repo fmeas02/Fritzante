@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Packs — Fritz Ante</title>
+  <meta name="description" content="Packs de bières sans alcool Fritz Ante : découverte, apéro, dégustation, après l'effort, 0.0 %, sans gluten, sans sucre, bio.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== BANDEAU COOKIES ===== -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+      <p><strong>Consentement aux cookies</strong><br>
+      Nous utilisons des cookies pour améliorer votre expérience sur le site. En savoir plus dans notre
+      <a href="#">politique de confidentialité</a>.</p>
+      <div class="cookie-actions">
+        <button class="btn btn-ghost" id="cookieRefuse">Refuser</button>
+        <button class="btn btn-primary" id="cookieAccept">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <img class="logo-img" src="assets/images/logo.png" alt="Fritz Ante, la bulle à zéro">
+        <span class="logo-text">Fritz Ante<small>La bulle à zéro</small></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Accueil</a>
+        <a href="sportifs.html">Sportifs</a>
+        <a href="les-moments.html">Moments</a>
+        <a href="les-besoins.html">Besoins</a>
+        <a href="packs.html" class="active">Packs</a>
+        <a href="selection.html">La sélection</a>
+        <a href="favoris.html">Favoris</a>
+        <a href="a-propos.html">À propos</a>
+      </nav>
+
+      <div class="navbar-actions">
+        <button class="icon-btn" aria-label="Compte">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="8" r="3.5"/>
+            <path d="M4.5 20c1.4-3.6 4.3-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/>
+          </svg>
+        </button>
+        <button class="icon-btn cart-btn" aria-label="Panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 4h2l1.6 10.6a2 2 0 0 0 2 1.7h8a2 2 0 0 0 2-1.6L20 8H6.2"/>
+            <circle cx="9.5" cy="20" r="1.3"/>
+            <circle cx="17" cy="20" r="1.3"/>
+          </svg>
+          <span class="cart-badge">0</span>
+        </button>
+        <button class="burger" id="burgerBtn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== BANNIÈRE DE PAGE ===== -->
+  <section class="page-banner">
+    <span class="eyebrow">Fritz Ante · Packs</span>
+    <h1>Packs de bières sans alcool</h1>
+    <p>Composés pour une situation précise : découverte, apéro, dégustation, après l'effort, 0.0&nbsp;%, sans gluten, sans sucre ou bio.</p>
+  </section>
+
+  <!-- ===== GRILLE DES PACKS ===== -->
+  <section class="packs" id="packs">
+    <div class="packs-grid packs-grid--wide">
+
+      <article class="pack-card">
+        <img src="assets/images/moments/apero-table.png" alt="6-Pack Apéro, bières sans alcool">
+        <div class="pack-body">
+          <h3>6-Pack Apéro</h3>
+          <p>Des blondes légères et désaltérantes, parfaites pour trinquer entre amis.</p>
+          <div class="pack-price">16,10€</div>
+        </div>
+      </article>
+
+      <article class="pack-card pack-card--bottle">
+        <img src="assets/images/produits/maisels-urban-ipa.jpg" alt="Pack Découverte, bières sans alcool">
+        <div class="pack-body">
+          <h3>Pack Découverte</h3>
+          <p>Un tour d'horizon des grandes marques allemandes sans alcool.</p>
+          <div class="pack-price">18,40€</div>
+        </div>
+      </article>
+
+      <article class="pack-card pack-card--bottle">
+        <img src="assets/images/produits/erdinger-uni.jpg" alt="12-Pack Partage, bières sans alcool">
+        <div class="pack-body">
+          <h3>12-Pack Partage</h3>
+          <p>Le format généreux pour les grandes tablées.</p>
+          <div class="pack-price">36,80€</div>
+        </div>
+      </article>
+
+      <article class="pack-card pack-card--bottle">
+        <img src="assets/images/produits/bitburger-pils-uni.jpg" alt="6-Pack Isotonique, bières sans alcool">
+        <div class="pack-body">
+          <h3>6-Pack Isotonique</h3>
+          <p>Naturellement isotoniques, pour une vraie récupération.</p>
+          <div class="pack-price">15,90€</div>
+        </div>
+      </article>
+
+      <article class="pack-card">
+        <img src="assets/images/moments/pack-recup-gym.jpg" alt="6-Pack 0.0 %, bières sans alcool">
+        <div class="pack-body">
+          <h3>6-Pack 0.0 %</h3>
+          <p>Vraiment sans une goutte d'alcool, du début à la fin.</p>
+          <div class="pack-price">14,90€</div>
+        </div>
+      </article>
+
+      <article class="pack-card">
+        <img src="assets/images/moments/degustation-table.jpg" alt="6-Pack Dégustation, bières sans alcool">
+        <div class="pack-body">
+          <h3>6-Pack Dégustation</h3>
+          <p>Des profils plus expressifs, à savourer lentement.</p>
+          <div class="pack-price">19,90€</div>
+        </div>
+      </article>
+
+      <article class="pack-card pack-card--bottle">
+        <img src="assets/images/produits/lammsbraeu.jpg" alt="6-Pack Sans gluten, bières sans alcool">
+        <div class="pack-body">
+          <h3>6-Pack Sans gluten</h3>
+          <p>Brassées pour se passer du gluten, sans rien sacrifier au goût.</p>
+          <div class="pack-price">20,40€</div>
+        </div>
+      </article>
+
+      <article class="pack-card pack-card--bottle">
+        <img src="assets/images/produits/bitburger-radler-uni.jpg" alt="6-Pack Sans sucre, bières sans alcool">
+        <div class="pack-body">
+          <h3>6-Pack Sans sucre</h3>
+          <p>Fraîches et peu sucrées, pour se désaltérer sans y penser deux fois.</p>
+          <div class="pack-price">16,10€</div>
+        </div>
+      </article>
+
+      <article class="pack-card pack-card--bottle">
+        <img src="assets/images/produits/franziskaner-uni.jpg" alt="6-Pack Bio, bières sans alcool">
+        <div class="pack-body">
+          <h3>6-Pack Bio</h3>
+          <p>Des ingrédients issus de l'agriculture biologique.</p>
+          <div class="pack-price">20,40€</div>
+        </div>
+      </article>
+
+      <article class="pack-card pack-card--zoom">
+        <img src="assets/images/moments/pack-recup-velo.jpg" alt="Pack Après l'effort, bières sans alcool">
+        <div class="pack-body">
+          <h3>Pack Après l'effort</h3>
+          <p>Six bières isotoniques pour récupérer sans casser la séance.</p>
+          <div class="pack-price">15,40€</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Nos collections</h4>
+        <a href="sportifs.html">Après l'effort</a>
+        <a href="les-moments.html">Pause fraîcheur</a>
+        <a href="les-moments.html">À table &amp; au jardin</a>
+        <a href="les-moments.html">Dégustation</a>
+        <a href="les-besoins.html">Naturellement isotonique</a>
+        <a href="les-besoins.html">0.0 %</a>
+        <a href="les-besoins.html">Sans gluten</a>
+        <a href="les-besoins.html">Sans sucre</a>
+        <a href="les-besoins.html">Bio</a>
+        <a href="favoris.html">Favoris</a>
+      </div>
+      <div class="footer-col">
+        <h4>Nos Packs</h4>
+        <a href="packs.html">Partage</a>
+        <a href="packs.html">Découverte</a>
+        <a href="packs.html">Apéro</a>
+        <a href="packs.html">Dégustation</a>
+        <a href="packs.html">0.0 %</a>
+        <a href="packs.html">Isotonique</a>
+        <a href="packs.html">Sans sucre</a>
+        <a href="packs.html">Bio</a>
+        <a href="packs.html">Sans gluten</a>
+      </div>
+      <div class="footer-col">
+        <h4>À propos</h4>
+        <a href="index.html">Page d'accueil</a>
+        <a href="selection.html">Rechercher</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="#">Contactez-nous</a>
+      </div>
+      <div class="footer-brand">
+        <img class="logo-img logo-img-footer" src="assets/images/logo.png" alt="Fritz Ante">
+      </div>
+      <p class="footer-copy">© 2026 Fritz Ante — La bulle à zéro.</p>
+      <nav class="footer-legal">
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Politique de remboursement</a>
+        <a href="#">Conditions d'utilisation</a>
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique d'expédition</a>
+        <a href="#">Conditions générales de vente</a>
+        <a href="#">Coordonnées</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

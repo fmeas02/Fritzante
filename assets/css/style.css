@@ -1,0 +1,839 @@
+/* =========================================================
+   FRITZ ANTE — page "Les Moments"
+   ========================================================= */
+
+/* ---- Tokens (variables de couleur / typo) ----
+   Règle d'or, pour ne jamais reproduire le bug d'avant :
+   - Sur fond CREME  -> texte ENCRE (foncé)
+   - Sur fond NAVY   -> texte CREME (clair)
+   Jamais de texte foncé sur fond foncé, jamais de texte clair sur fond clair. */
+:root {
+  --cream:      #FAF4E6;
+  --cream-soft: #F1E9D6;
+  --navy:       #001F60;
+  --navy-soft:  #0A2E77;
+  --amber:      #D89B3D;
+  --amber-pale: #F2E2B3;
+  --terracotta: #C1592B;
+  --ink:        #211D18;
+  --ink-70:     rgba(33, 29, 24, 0.85);
+  --cream-70:   rgba(250, 246, 235, 0.92);
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Manrope", sans-serif;
+
+  --radius: 18px;
+  --max-width: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0;
+  color: var(--ink);
+}
+
+/* ---- Boutons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--terracotta);
+  color: var(--cream); /* texte clair sur fond foncé */
+}
+.btn-light {
+  background: var(--cream);
+  color: var(--navy); /* texte foncé sur fond clair */
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(33,29,24,0.25);
+  padding: 11px 22px;
+}
+
+/* =========================================================
+   BANDEAU COOKIES
+   ========================================================= */
+.cookie-banner {
+  position: fixed;
+  left: 20px; right: 20px; bottom: 20px;
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--cream);
+  color: var(--ink); /* texte foncé sur fond clair : lisible */
+  border: 1px solid rgba(33,29,24,0.1);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(20,34,75,0.18);
+  padding: 22px;
+  z-index: 999;
+}
+.cookie-banner p { margin: 0 0 14px; font-size: 0.92rem; color: var(--ink-70); }
+.cookie-banner a { text-decoration: underline; color: var(--ink); }
+.cookie-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.cookie-banner.hidden { display: none; }
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navy); /* fond foncé */
+  color: var(--cream);      /* -> texte clair, jamais l'inverse */
+}
+.navbar-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-img {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.logo-img-footer { width: 60px; height: 60px; }
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text small {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.68rem;
+  color: var(--cream-70);
+}
+
+.nav-links {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--cream-70);
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--cream);
+  border-color: var(--amber);
+}
+
+.navbar-actions { display: flex; align-items: center; gap: 6px; }
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.icon-btn svg { display: block; }
+.cart-btn { position: relative; }
+.cart-badge {
+  position: absolute;
+  top: -2px; right: -2px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: var(--cream); /* fond foncé -> texte clair */
+  font-size: 0.62rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.burger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* =========================================================
+   HERO — photo plein écran
+   ========================================================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  min-height: min(82vh, 680px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 8%; /* remonté encore pour garder tous les visages, y compris l'enfant au fond */
+  z-index: 0;
+}
+/* Calque : dégradé du bas (sombre, pour le texte) vers le haut (quasi transparent,
+   la photo garde ses vraies couleurs). C'est ce dégradé qui garantit la lisibilité,
+   jamais le texte seul sur la photo brute. */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,15,45,0.85) 0%, rgba(0,15,45,0.65) 45%, rgba(0,15,45,0.52) 70%, rgba(0,15,45,0.46) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.hero-content h1, .hero-content p { text-shadow: 0 2px 14px rgba(0,10,35,0.6); }
+.eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy); /* pastille claire -> texte foncé, lisible partout */
+  font-weight: 700;
+  margin-bottom: 18px;
+  background: var(--amber);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.hero-content h1 {
+  font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+  color: var(--cream);
+  margin-bottom: 14px;
+  line-height: 1.08;
+}
+.hero-content p {
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin-bottom: 28px;
+}
+.hero-pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.pill {
+  background: var(--cream); /* fond clair plein -> texte foncé, contraste garanti */
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(0,15,45,0.25);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.pill:hover { background: var(--amber); transform: translateY(-2px); }
+
+/* =========================================================
+   ÉTAGÈRE — "Découvre notre sélection"
+   ========================================================= */
+.shelf {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 76px 24px 20px;
+}
+.shelf-intro {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  text-align: center;
+  color: var(--ink-70);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+.shelf .section-head { margin-bottom: 32px; }
+.shelf-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x proximity;
+}
+.shelf-item {
+  flex: 0 0 170px;
+  scroll-snap-align: start;
+  background: #fff; /* fond clair -> texte foncé pour le nom, voir shelf-tag */
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 22px rgba(20,34,75,0.07);
+}
+.shelf-item img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  padding: 14px;
+}
+.shelf-tag {
+  background: var(--navy); /* fond foncé -> texte clair */
+  color: var(--cream);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.shelf-tag span { font-size: 0.72rem; color: var(--cream-70); }
+.shelf-tag strong { font-size: 0.9rem; }
+/* Modificateur : pour les photos de "scène" (pas des bouteilles sur fond studio),
+   on remplit toute la case au lieu de la faire flotter avec des bords blancs. */
+.shelf-item--cover img {
+  object-fit: cover;
+  padding: 0;
+}
+.shelf-more { text-align: center; margin-top: 28px; }
+
+/* ---- Barre d'outils (Disponibilité / Prix / nombre d'articles / Trier / vue) ---- */
+.shelf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(33,29,24,0.12);
+}
+.toolbar-filters, .toolbar-right { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.toolbar-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 4px 0;
+}
+.toolbar-filter svg { opacity: 0.6; }
+.toolbar-count { font-size: 0.85rem; color: var(--ink-70); }
+.toolbar-views { display: flex; gap: 2px; }
+.view-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  color: var(--ink-70);
+  border-radius: 6px;
+}
+.view-btn.active, .view-btn:hover { color: var(--ink); background: var(--cream-soft); }
+.shelf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.shelf-grid .shelf-item { width: 100%; }
+/* Vue liste : au lieu de la grille, on scrolle sur le côté (activée par le bouton
+   "liste" de la barre d'outils). */
+.shelf-grid.shelf-grid--list {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 12px;
+  scroll-snap-type: x proximity;
+}
+.shelf-grid.shelf-grid--list .shelf-item {
+  flex: 0 0 170px;
+  width: 170px;
+  scroll-snap-align: start;
+}
+.shelf-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(0,31,96,0.25);
+  background: var(--cream-soft);
+}
+.shelf-placeholder span {
+  font-size: 0.7rem;
+  color: var(--ink-70);
+  font-style: italic;
+}
+
+/* =========================================================
+   MOSAÏQUE : PHOTO + QUI EST FRITZ ANTE
+   ========================================================= */
+.mosaic-duo {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 24px 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+.mosaic-photo {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.mosaic-photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-card {
+  background: var(--amber-pale); /* fond clair -> texte foncé */
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-card-photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.about-card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.about-card h2 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin-bottom: 10px; }
+.about-card p { color: var(--ink-70); font-size: 0.92rem; margin-bottom: 20px; }
+
+/* =========================================================
+   BANNIÈRE DE PAGE (pages secondaires : Les Moments, etc.)
+   ========================================================= */
+.page-banner {
+  background: var(--navy); /* fond foncé -> texte clair */
+  color: var(--cream);
+  text-align: center;
+  padding: 56px 24px 48px;
+}
+.page-banner .eyebrow { margin-bottom: 16px; }
+.page-banner h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.page-banner p {
+  color: var(--cream-70);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   ARTICLE (page À propos)
+   ========================================================= */
+.article {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.article p {
+  color: var(--ink-70);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+.article h2 {
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+  margin: 40px 0 16px;
+}
+.article ul {
+  margin: 0 0 20px;
+  padding-left: 22px;
+  color: var(--ink-70);
+  line-height: 1.8;
+}
+.article-photo {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 8px 0 32px;
+}
+.article-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 20%; }
+
+/* =========================================================
+   GRILLE DES MOMENTS
+   ========================================================= */
+.moments {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+  position: relative;
+  z-index: 3;
+}
+.section-head {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 44px;
+}
+.section-head h2 {
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  margin-bottom: 12px;
+}
+.section-head p { color: var(--ink); font-size: 1.02rem; }
+
+.moments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.moment-card {
+  background: #fff; /* fond clair -> texte foncé */
+  color: var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(20,34,75,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.moment-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.moment-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 40px rgba(20,34,75,0.14);
+}
+.moment-media {
+  aspect-ratio: 4 / 3;
+  background: var(--cream-soft);
+  overflow: hidden;
+}
+.moment-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%; /* garde les bouteilles/visages bien cadrés */
+  transition: transform 0.35s ease;
+}
+/* Pour les photos de bouteilles (fond studio) : on veut voir la bouteille entière,
+   centrée, jamais recadrée comme une photo de scène de vie. */
+.moment-media.contain {
+  background: #fff;
+}
+.moment-media.contain img {
+  object-fit: contain;
+  object-position: center;
+  padding: 18px;
+}
+.moment-card:hover .moment-media img { transform: scale(1.05); }
+.moment-body { padding: 22px 22px 26px; }
+.moment-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.moment-card p { font-size: 0.9rem; color: var(--ink-70); margin: 0; }
+
+/* =========================================================
+   MOSAÏQUE "SELON TES BESOINS"
+   ========================================================= */
+.besoins-mosaic {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+.besoins-bento {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 18px;
+  height: 560px;
+}
+.besoins-tile--hero { grid-column: 1; grid-row: 1 / 3; }
+.besoins-tile--iso  { grid-column: 2; grid-row: 1; }
+.besoins-tile--bio  { grid-column: 3; grid-row: 1; }
+.besoins-tile--gluten { grid-column: 2; grid-row: 2; }
+.besoins-tile--sucre  { grid-column: 3; grid-row: 2; }
+.besoins-tile {
+  position: relative;
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(20,34,75,0.1);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.besoins-tile:hover {
+  box-shadow: 0 22px 40px rgba(20,34,75,0.16);
+  transform: translateY(-3px);
+}
+.besoins-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+.besoins-tile:hover img { transform: scale(1.06); }
+.besoins-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,15,45,0.6) 0%, rgba(0,15,45,0.05) 55%, rgba(0,15,45,0) 75%);
+}
+.besoins-tile-label {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  background: rgba(0,31,96,0.62);
+  color: var(--cream); /* fond foncé -> texte clair */
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 8px 16px;
+  border-radius: 999px;
+  backdrop-filter: blur(2px);
+}
+
+/* =========================================================
+   PACKS
+   ========================================================= */
+.packs {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 56px 24px 100px;
+}
+.packs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+.pack-card {
+  background: #fff; /* fond clair -> texte foncé */
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(20,34,75,0.08);
+}
+.pack-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+/* Modificateur : photo "scène" avec beaucoup de vide autour du produit -> on zoome
+   pour que la bière prenne toute la place, sans bande blanche visible. */
+.pack-card--zoom {
+  overflow: hidden;
+}
+.pack-card--zoom img {
+  transform: scale(1.4);
+  transform-origin: center;
+}
+/* Modificateur : photo studio d'une bouteille sur fond blanc -> on la centre en
+   entier plutôt que de la recadrer n'importe comment. */
+.pack-card--bottle img {
+  object-fit: contain;
+  background: #fff;
+  padding: 28px;
+}
+.pack-body { padding: 24px; }
+.pack-body h3 { font-size: 1.15rem; margin-bottom: 8px; }
+.pack-body p { color: var(--ink-70); font-size: 0.92rem; margin: 0 0 16px; }
+.packs-grid--wide { grid-template-columns: repeat(3, 1fr); }
+.pack-price { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; color: var(--terracotta); }
+
+/* =========================================================
+   LA SÉLECTION COMPLÈTE
+   ========================================================= */
+.selection {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px 100px;
+}
+.selection-strip {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x proximity;
+}
+.selection-item {
+  flex: 0 0 140px;
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 12px 14px;
+  text-align: center;
+  box-shadow: 0 10px 22px rgba(20,34,75,0.07);
+}
+.selection-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.selection-item span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink); /* fond clair -> texte foncé */
+}
+
+/* =========================================================
+   BANDEAU CTA
+   ========================================================= */
+.cta-band {
+  background: var(--terracotta);
+  color: var(--cream); /* fond foncé -> texte clair */
+  text-align: center;
+  padding: 70px 24px;
+}
+.cta-inner { max-width: 520px; margin: 0 auto; }
+.cta-band h2 { color: var(--cream); font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 12px; }
+.cta-band p { color: var(--cream-70); margin-bottom: 26px; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  background: var(--navy);
+  color: var(--cream-70); /* fond foncé -> texte clair */
+  padding: 48px 24px 24px;
+}
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 32px;
+  align-items: start;
+}
+.footer-col { display: flex; flex-direction: column; gap: 10px; }
+.footer-col h4 {
+  font-family: var(--font-display);
+  color: var(--cream);
+  font-size: 0.95rem;
+  margin: 0 0 6px;
+}
+.footer-col a { font-size: 0.85rem; color: var(--cream-70); }
+.footer-col a:hover { color: var(--cream); }
+.footer-brand { display: flex; align-items: flex-start; justify-content: flex-end; }
+.footer-copy {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(250,244,230,0.5);
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(250,244,230,0.12);
+  margin-bottom: 0;
+}
+.footer-legal {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 10px;
+}
+.footer-legal a {
+  font-size: 0.74rem;
+  color: rgba(250,244,230,0.45);
+}
+.footer-legal a:hover { color: var(--cream-70); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 960px) {
+  .moments-grid { grid-template-columns: repeat(2, 1fr); }
+  .packs-grid { grid-template-columns: 1fr; }
+  .packs-grid--wide { grid-template-columns: repeat(2, 1fr); }
+  .mosaic-duo { grid-template-columns: 1fr; }
+  .mosaic-photo { aspect-ratio: 16 / 9; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; justify-content: flex-start; }
+  .shelf-grid { grid-template-columns: repeat(3, 1fr); }
+  .besoins-bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px repeat(2, 180px);
+    height: auto;
+  }
+  .besoins-tile--hero { grid-column: 1 / -1; grid-row: 1; }
+  .besoins-tile--iso  { grid-column: 1; grid-row: 2; }
+  .besoins-tile--bio  { grid-column: 2; grid-row: 2; }
+  .besoins-tile--gluten { grid-column: 1; grid-row: 3; }
+  .besoins-tile--sucre  { grid-column: 2; grid-row: 3; }
+}
+
+@media (max-width: 720px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--navy);
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 14px;
+  }
+  .nav-links.open { display: flex; }
+  .burger { display: block; }
+  .hero { min-height: 520px; padding: 40px 20px; }
+  .hero-content h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+}
+
+@media (max-width: 520px) {
+  .moments-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; text-align: center; }
+  .footer-brand { justify-content: center; }
+  .hero { min-height: 460px; }
+  .pill { font-size: 0.8rem; padding: 9px 16px; }
+  .packs-grid--wide { grid-template-columns: 1fr; }
+  .shelf-grid { grid-template-columns: repeat(2, 1fr); }
+  .besoins-bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    height: auto;
+  }
+  .besoins-tile--hero,
+  .besoins-tile--iso,
+  .besoins-tile--bio,
+  .besoins-tile--gluten,
+  .besoins-tile--sucre {
+    grid-column: 1;
+    grid-row: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
